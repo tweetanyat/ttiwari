@@ -1,0 +1,13 @@
+def new_evaluate(board):  
+    if board.is_game_over():
+        return -1000
+    else:        
+        length_2_current = board.longest_chain_2(board.get_current_player_id())
+        length_3_current = board.longest_chain_3(board.get_current_player_id())
+        score_current_player = (length_2_current * 1) + (length_3_current * 4)    
+        
+        length_2_other = board.longest_chain_2(board.get_other_player_id())
+        length_3_other = board.longest_chain_3(board.get_other_player_id())
+        score_other_player = (length_2_other * 1) + (length_3_other * 4) 
+        
+    return score_current_player - score_other_player

@@ -1,0 +1,67 @@
+def _contig_vector_length_2(self, row, col, direction):
+	count = 0
+	playerid = self.get_cell(row, col)
+
+	while 0 <= row < self.board_height and 0 <= col < self.board_width and playerid == self.get_cell(row, col):
+		row += direction[0]
+		col += direction[1]
+		count += 1
+		if count == 2:
+			break
+
+	return count - 1
+
+def longest_chain_2(self, playerid):
+	"""
+	Returns the length of the longest chain of tokens controlled by this player,
+	0 if the player has no tokens on the board
+	"""
+	counter = 0
+	for i in xrange(self.board_height):
+		for j in xrange(self.board_width):
+			if self.get_cell(i,j) == playerid:
+				if ((self._contig_vector_length_2(i, j, (1,1)) + self._contig_vector_length_2(i, j, (-1,-1))) == 1):
+					counter = counter + 1
+				if ((self._contig_vector_length_2(i, j, (1,0)) + self._contig_vector_length_2(i, j, (-1,0))) == 1):
+					counter = counter + 1 
+				if ((self._contig_vector_length_2(i, j, (0,1)) + self._contig_vector_length_2(i, j, (0,-1))) == 1):
+					counter = counter + 1 
+				if ((self._contig_vector_length_2(i, j, (-1,1)) + self._contig_vector_length_2(i, j, (1,-1))) == 1):
+					counter = counter + 1 
+
+	return counter
+
+def _contig_vector_length_3(self, row, col, direction):
+	count = 0
+	playerid = self.get_cell(row, col)
+
+	while 0 <= row < self.board_height and 0 <= col < self.board_width and playerid == self.get_cell(row, col):
+		row += direction[0]
+		col += direction[1]
+		count += 1
+		if count == 3:
+			break
+
+	return count - 1
+
+def longest_chain_3(self, playerid):
+	"""
+	Returns the length of the longest chain of tokens controlled by this player,
+	0 if the player has no tokens on the board
+	"""
+	counter = 0
+	for i in xrange(self.board_height):
+		for j in xrange(self.board_width):
+			if self.get_cell(i,j) == playerid:
+				if ((self._contig_vector_length_3(i, j, (1,1)) + self._contig_vector_length_3(i, j, (-1,-1))) == 2):
+					counter = counter + 1
+				if ((self._contig_vector_length_3(i, j, (1,0)) + self._contig_vector_length_3(i, j, (-1,0))) == 2):
+					counter =counter + 1 
+				if ((self._contig_vector_length_3(i, j, (0,1)) + self._contig_vector_length_3(i, j, (0,-1))) == 2):
+					counter = counter + 1 
+				if ((self._contig_vector_length_3(i, j, (-1,1)) + self._contig_vector_length_3(i, j, (1,-1))) == 2):
+					counter = counter + 1 
+				
+	return counter
+
+
